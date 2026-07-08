@@ -1,0 +1,84 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins, Montserrat, sans-serif;
+}
+
+body{
+background-color: white;
+}
+
+/* ===== NAVBAR ===== */
+header{
+    background-color: #1e3a8a;
+    color: white;
+    padding: 20px 10%;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu{
+    display: flex;
+    gap: 25px;
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: black;
+}
+
+/* ===== SECTION 1: HOME ===== */
+.home{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+
+    padding: 50px 10%;
+    background: lightgray;
+}
+
+.home-text h1{
+    font-size: 48px;
+    color: #1e3a8a;
+}
+
+.home-text h3{
+    font-size: 15px 0;
+    color: #2563eb;
+}
+
+.home-text p{
+    line-height: 28px;
+}
+
+.home img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* ===== SECTION:2 ABOUT ME ===== */
+.section-title{
+    text-align:center;
+    margin:50px 0 30px;
+    color:#1e3a8a;
+}
+
+.section-description{
+    text-align:center;
+}
