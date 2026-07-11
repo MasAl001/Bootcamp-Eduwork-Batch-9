@@ -1,3 +1,7 @@
+body{
+    background-color: #0a0a0a;
+}
+
 h1{
     font-family: "Bebas Neu", sans-serif;
 }
@@ -7,7 +11,8 @@ h2, p, a{
 
 .navbar{
     padding: 0px;
-    /* background-color: #D3E97A; */
+    background-color: #0a0a0a;
+    box-shadow: 0px 0px 20px rgba(222, 255, 73, 0.2);
 }
 
 .navbar .navbar-brand{
@@ -17,6 +22,15 @@ h2, p, a{
     font-size: 32px;
     color: #c7c7c7;
     margin-left: 60px;
+}
+
+.navbar .navbar-brand:hover{
+    color: #D3E97A;
+    /* background-color: #D3E97A; */
+}
+
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .navbar .navbar-nav{
@@ -33,26 +47,18 @@ h2, p, a{
     margin: 16px;
 }
 
+.navbar-nav .nav-item .nav-link:hover{
+    color: #D3E97A;
+}
+
 .container{
     margin-top: 50px;
     /* background-color: aqua; */
 }
 
-#aboutme.container{
-    margin-top: 80px;
-    /* background-color: aqua; */
-}
-
-#portofolio.container{
-    margin-top: 150px;
-    margin-bottom: 50px;
-    /* background-color: aqua; */
-}
-
 .container .row .col-lg-6 h1{
-    font-family: "Bebas Neu", sans-serif;
     line-height: 90%;
-    /* color: #c7c7c7; */
+    color: #fff;
     font-size: 90px;
     text-decoration: underline;
 }
@@ -62,7 +68,7 @@ h2, p, a{
     font-weight: 400;
     line-height: 150%;
     margin-top: 8px;
-    /* color: #c7c7c7; */
+    color: #c7c7c7;
 }
 
 .container .row .col-lg-6 a{
@@ -82,37 +88,81 @@ h2, p, a{
     width: 400px;
     height: 500px;
     border-radius: 20px;
+    /* margin-top: 20px; */
+}
+
+#aboutme.container{
+    margin-top: 80px;
+    /* background-color: aqua; */
 }
 
 .container .row .col-lg-12 h1{
     font-size: 50px;
+    color: #fff;
 }
 
 .container .row .col-lg-12 p{
     font-size: 18px;
     font-weight: 400;
     line-height: 150%;
+    color: #c7c7c7;
 }
 
-.card{
+/* .container .row .col-lg-4 .card .shadow{
+    box-shadow: 0 10px 20px rgba(77, 170, 33, 0.555) !important;
+} */
+
+#aboutme .row .col-lg-4 .card{
     padding: 10px;
     margin-top: 20px;
     border-radius: 20px;
+    border-color: #D3E97A;
+    background-color: rgba(63, 63, 63, 0.219);
+    /* box-shadow: 0px 3px 0px rgba(255, 255, 255, 0.5); */
+}
+
+#portofolio.container{
+    margin-top: 150px;
+    margin-bottom: 50px;
+    /* background-color: aqua; */
+}
+
+#portofolio .row .col-lg-4 .card{
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    /* border-color: #D3E97A; */
+    background: linear-gradient(to bottom, #d3e97a3f, #0a0a0a);
+    transition: .3s;
+    /* background-color: rgba(63, 63, 63, 0.219); */
+    /* box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5); */
+}
+
+#portofolio .row .col-lg-4 .card:hover{
+    transform: translateY(-8px);
+    background: linear-gradient(to bottom, #d3e97a71, #0a0a0a);
+    border-color: #d3e97ab6;
+    box-shadow: 0px 0px 20px rgba(222, 255, 73, 0.2);
+}
+
+.container .row .col-lg-4 .card img{
+    border-radius: 10px;
 }
 
 .container .row .col-lg-4 .card h2{
     font-size: 32px;
     font-weight: 500;
     line-height: 140%;
+    color: #fff;
 }
 
 .container .row .col-lg-4 .card p{
     font-size: 18px;
     font-weight: 400;
     line-height: 150%;
+    color: #fff;
 }
 
-.footer{
-    display: flex;
-    text-align: center;
+.footer p{
+    color: #fff;
 }
