@@ -1,0 +1,118 @@
+h1{
+    font-family: "Bebas Neu", sans-serif;
+}
+h2, p, a{
+    font-family: "Manrope", sans-serif;
+}
+
+.navbar{
+    padding: 0px;
+    /* background-color: #D3E97A; */
+}
+
+.navbar .navbar-brand{
+    font-family: "Bebas Neu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 32px;
+    color: #c7c7c7;
+    margin-left: 60px;
+}
+
+.navbar .navbar-nav{
+    margin-right: 60px;
+}
+
+.navbar-nav .nav-item .nav-link{
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: -3%;
+    line-height: 150%;
+    color: #c7c7c7;
+    margin: 16px;
+}
+
+.container{
+    margin-top: 50px;
+    /* background-color: aqua; */
+}
+
+#aboutme.container{
+    margin-top: 80px;
+    /* background-color: aqua; */
+}
+
+#portofolio.container{
+    margin-top: 150px;
+    margin-bottom: 50px;
+    /* background-color: aqua; */
+}
+
+.container .row .col-lg-6 h1{
+    font-family: "Bebas Neu", sans-serif;
+    line-height: 90%;
+    /* color: #c7c7c7; */
+    font-size: 90px;
+    text-decoration: underline;
+}
+
+.container .row .col-lg-6 p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+    margin-top: 8px;
+    /* color: #c7c7c7; */
+}
+
+.container .row .col-lg-6 a{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 100%;
+    background-color: #D3E97A;
+    padding: 19px 24px;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+.container .row .col-lg-6 img{
+    /* display: flex; */
+    /* position: relative; */
+    /* left: 200px; */
+    width: 400px;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.container .row .col-lg-12 h1{
+    font-size: 50px;
+}
+
+.container .row .col-lg-12 p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.card{
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.container .row .col-lg-4 .card h2{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+.container .row .col-lg-4 .card p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.footer{
+    display: flex;
+    text-align: center;
+}
