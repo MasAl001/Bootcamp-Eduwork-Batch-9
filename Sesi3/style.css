@@ -2,7 +2,7 @@ body{
     background-color: #0a0a0a;
 }
 
-h1{
+h1, label{
     font-family: "Bebas Neu", sans-serif;
 }
 h2, p, a{
@@ -79,6 +79,35 @@ h2, p, a{
     padding: 19px 24px;
     border-radius: 50px;
     margin-top: 20px;
+}
+
+.container .row .col-lg-6 .btn{
+    border-color: #D3E97A;
+}
+
+.modal-content{
+    /* background-color: #0a0a0a; */
+    box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(to bottom, #d3e97a3f, #0a0a0a);
+}
+
+.modal-content h1{
+    color: #fff;
+}
+
+.modal-content label{
+    color: #fff;
+}
+
+.modal-footer .btn-primary{
+    color: #0a0a0a;
+    background-color: #D3E97A;
+    border-color: #D3E97A;
+}
+
+.modal-footer .btn-primary:hover{
+    color: #0a0a0a;
+    background-color: #b0c461;
 }
 
 .container .row .col-lg-6 img{
@@ -161,6 +190,21 @@ h2, p, a{
     font-weight: 400;
     line-height: 150%;
     color: #fff;
+}
+
+.container .row .col-lg-4 .card a{
+    font-size: 11px;
+    color: #0a0a0a;
+    text-decoration: none;
+    background-color: #D3E97A;
+    padding: 5px 10px;
+    border-radius: 50px;
+    margin-right: 5px;
+    transition: .3s;
+}
+
+.container .row .col-lg-4 .card a:hover{
+    background-color: #b0c461;
 }
 
 .footer p{
