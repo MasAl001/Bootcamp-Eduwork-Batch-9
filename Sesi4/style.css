@@ -1,0 +1,162 @@
+body{
+    background-color: #0F172A;
+    color: #F8FAFC;
+}
+
+/* SECTION 1 : NAVBAR */
+
+.navbar-brand{
+    font-family: "Oleo Script", system-ui;
+    font-size: 32px;
+    font-weight: 400;
+    margin-left: 60px;
+    color: #F8FAFC;
+}
+
+.navbar .nav-item{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.nav-item a{
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #F8FAFC;
+}
+
+.nav-item a:hover{
+    color: #94A3B8;
+}
+
+.navbar .btn{
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 60px;
+    color: #F8FAFC;
+    border-color: #F8FAFC;;
+}
+
+/* SECTION 2 : HERO */
+.container .hero{
+    padding-top: 25px;
+    padding-bottom: 180px;
+    /* background-color: #1E293B; */
+}
+
+.profile-img{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.hero-title{
+    font-family: "Poppins", sans-serif;
+}
+
+.hero-title h1{
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: -6%;
+    margin-top: 25px;
+}
+
+.hero-title h2{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    /* margin-top: 15px; */
+}
+
+.hero-text{
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    /* line-height: 30px; */
+    margin-top: 25px;
+}
+
+.hero-text p{
+    margin-top: -15px;
+}
+
+.hero-btn .btn{
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #F8FAFC;
+    border-color: #F8FAFC;
+    border-radius: 75px;
+    padding: 19px 50px;
+    margin-top: 20px;
+}
+
+/* SECTION 3 : ABOUT ME */
+.container{
+    border: 100px;
+    border-color: #F8FAFC;
+    /* background-color: #94A3B8; */
+}
+
+.aboutme{
+    font-family: "Inter", sans-serif;
+    margin-top: 100px;
+    margin-bottom: 110px;
+}
+
+.aboutme-btn .btn{
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #F8FAFC;
+    border-color: #F8FAFC;
+    border-radius: 75px;
+    padding: 19px 50px;
+    margin-top: 20px;
+}
+
+.about-title h1{
+    font-size: 35px;
+    font-weight: 800;
+    line-height: 30px;
+    /* margin-top: 15px; */
+}
+
+.about-title h2{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 30px;
+    margin-top: -10px;
+    /* margin-top: 15px; */
+}
+
+.about-text p{
+    font-size: 12px;
+    font-weight: 500;
+    /* line-height: 30px; */
+    /* margin-top: 15px; */
+}
+
+/* SECTION 4 : SERVICES */
+
+.card{
+    color: #F8FAFC;
+    width:30rem;
+    background-color: #334155;
+}
+
+.card-body{
+    font-family: "Inter", sans-serif;
+}
+
+.card-body h1{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.card-body p{
+    font-size: 14px;
+    font-weight: 400;
+}

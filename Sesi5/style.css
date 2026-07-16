@@ -1,0 +1,15 @@
+/* CSS Tambahan untuk memastikan ukuran gambar seragam */
+.gambar-produk {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+/* Memberikan sedikit efek saat kartu produk di-hover */
+.card-produk:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.card-produk {
+    transition: all 0.3s ease-in-out;
+}
