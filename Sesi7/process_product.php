@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<li style='color:red;'>$error</li>";
         }
         echo "</ul>";
-        echo "<a href='form-product.html'>Kembali ke Form</a>";
+        echo "<a href='form_product.php'>Kembali ke Form</a>";
     } else {
         // Jika tidak ada error, proses penyimpanan ke database dilakukan di sini
         
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Stok: " . $stok . "<br>";
         echo "Deskripsi: " . (!empty($deskripsi) ? $deskripsi : "<em>Tidak ada deskripsi</em>") . "<br>";
         echo "Gambar Produk: " . $namaGambar . "<br>";
-        echo "<br><a href='form-product.html'>Tambah Produk Lain</a>";
+        echo "<br><a href='form_product.php'>Tambah Produk Lain</a>";
         echo "</div>";
     }
 

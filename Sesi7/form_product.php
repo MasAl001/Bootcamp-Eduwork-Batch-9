@@ -33,7 +33,7 @@
         <h2 class="form-title text-center">Tambah Produk Baru</h2>
         
         <!-- Form action menunjuk ke file PHP yang akan memproses data, menggunakan method POST dan enctype untuk file upload -->
-        <form action="process-product.php" method="POST" enctype="multipart/form-data">
+        <form action="process_product.php" method="POST" enctype="multipart/form-data">
             
             <!-- Input Nama Produk -->
             <div class="mb-3">
