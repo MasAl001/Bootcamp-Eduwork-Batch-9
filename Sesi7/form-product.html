@@ -32,8 +32,8 @@
     <div class="form-container">
         <h2 class="form-title text-center">Tambah Produk Baru</h2>
         
-        <!-- Form action menunjuk ke file PHP yang akan memproses data, menggunakan method POST -->
-        <form action="process_product.php" method="POST">
+        <!-- Form action menunjuk ke file PHP yang akan memproses data, menggunakan method POST dan enctype untuk file upload -->
+        <form action="process-product.php" method="POST" enctype="multipart/form-data">
             
             <!-- Input Nama Produk -->
             <div class="mb-3">
@@ -74,6 +74,13 @@
             <div class="mb-3">
                 <label for="productDescription" class="form-label">Deskripsi Produk</label>
                 <textarea class="form-control" id="productDescription" name="productDescription" rows="4" placeholder="Jelaskan detail produk secara singkat..."></textarea>
+            </div>
+
+            <!-- Input Gambar Produk -->
+            <div class="mb-3">
+                <label for="productImage" class="form-label">Gambar Produk</label>
+                <input class="form-control" type="file" id="productImage" name="productImage" accept="image/*" required>
+                <div class="form-text text-muted">Format yang didukung: JPG, PNG, GIF. Maksimal 2MB.</div>
             </div>
 
             <!-- Tombol Submit -->

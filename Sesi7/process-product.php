@@ -38,6 +38,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Stok harus berupa angka positif.";
     }
 
+    // Validasi Gambar
+    $namaGambar = "";
+    if (isset($_FILES['productImage']) && $_FILES['productImage']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['productImage']['tmp_name'];
+        $fileName = $_FILES['productImage']['name'];
+        $fileSize = $_FILES['productImage']['size'];
+        
+        // Mendapatkan ekstensi file
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+
+        // Ekstensi yang diizinkan
+        $allowedfileExtensions = array('jpg', 'gif', 'png', 'jpeg');
+        
+        if (in_array($fileExtension, $allowedfileExtensions)) {
+            // Validasi ukuran file (contoh: maksimal 2MB)
+            if ($fileSize < 2000000) { 
+                /* 
+                // Kode asli untuk menyimpan gambar ke folder server (Uncomment jika ingin digunakan)
+                $uploadFileDir = './uploaded_images/';
+                // Pastikan folder di atas sudah dibuat!
+                $dest_path = $uploadFileDir . $fileName;
+                if(move_uploaded_file($fileTmpPath, $dest_path)) {
+                   $namaGambar = $fileName;
+                } else {
+                   $errors[] = "Terjadi kesalahan saat memindahkan file gambar.";
+                }
+                */
+                
+                // Simulasi: kita hanya menyimpan nama filenya saja
+                $namaGambar = htmlspecialchars($fileName); 
+            } else {
+                $errors[] = "Ukuran gambar terlalu besar. Maksimal 2MB.";
+            }
+        } else {
+            $errors[] = "Format gambar tidak valid. Gunakan: " . implode(', ', $allowedfileExtensions);
+        }
+    } else {
+        $errors[] = "Gambar produk harus diunggah.";
+    }
+
     // Cek apakah ada error
     if (count($errors) > 0) {
         // Jika ada error, tampilkan pesan error
@@ -54,13 +95,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Contoh kode untuk menyimpan ke database (PDO)
         // Pastikan Anda sudah membuat koneksi database ($conn)
         
-        $sql = "INSERT INTO produk (nama, kategori, harga, stok, deskripsi) VALUES (:nama, :kategori, :harga, :stok, :deskripsi)";
+        $sql = "INSERT INTO produk (nama, kategori, harga, stok, deskripsi, gambar) VALUES (:nama, :kategori, :harga, :stok, :deskripsi, :gambar)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':nama', $namaProduk);
         $stmt->bindParam(':kategori', $kategori);
         $stmt->bindParam(':harga', $harga);
         $stmt->bindParam(':stok', $stok);
         $stmt->bindParam(':deskripsi', $deskripsi);
+        $stmt->bindParam(':gambar', $namaGambar);
         
         if ($stmt->execute()) {
              // Berhasil disimpan
@@ -77,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Harga: Rp" . number_format((float)$harga, 0, ',', '.') . "<br>";
         echo "Stok: " . $stok . "<br>";
         echo "Deskripsi: " . (!empty($deskripsi) ? $deskripsi : "<em>Tidak ada deskripsi</em>") . "<br>";
+        echo "Gambar Produk: " . $namaGambar . "<br>";
         echo "<br><a href='form-product.html'>Tambah Produk Lain</a>";
         echo "</div>";
     }
