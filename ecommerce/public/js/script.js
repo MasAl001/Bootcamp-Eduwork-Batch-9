@@ -258,7 +258,7 @@ function updateCartUI() {
     container.innerHTML = cart.map((item, index) => `
         <div class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom">
             <img src="${item.image}" alt="${item.title}" class="cart-item-img">
-            <div class="flex-grow-1">
+            <div class="grow">
                 <h6 class="mb-1 small fw-bold text-truncate" style="max-width: 180px;">${item.title}</h6>
                 <div class="text-primary fw-bold small">${formatRupiah(item.price)}</div>
                 <div class="d-flex align-items-center gap-2 mt-2">
