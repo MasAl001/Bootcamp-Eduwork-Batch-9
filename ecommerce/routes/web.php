@@ -14,6 +14,6 @@ Route::get('/products', function () {
     return view('products', ['title' => 'Products']);
 });
 
-Route::get('/cart', function () {
-    return view('cart', ['title' => 'Cart']);
+Route::get('/carts', function () {
+    return view('carts', ['title' => 'Carts']);
 });
