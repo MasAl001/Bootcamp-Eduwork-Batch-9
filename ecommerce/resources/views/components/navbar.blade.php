@@ -1,7 +1,7 @@
 <!-- Navbar Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm py-3">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary" href="#">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary" href="/home">
             <i class="bi bi-bag-heart-fill fs-3 text-primary"></i>
             <span class="text-white">Toko AL</span>
         </a>
