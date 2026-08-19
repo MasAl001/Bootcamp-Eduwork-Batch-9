@@ -10,9 +10,24 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+       $products = Product::with('productCategory');
+
+        if($request->has('search') && $request->search != '') {
+            $products = $products->where('name', 'like', '%' . $request->search . '%')
+                        ->orWhereHas('productCategory', function($query) use ($request) {
+                            $query->where('name', 'like', '%' . $request->search . '%');
+                        });
+        }
+        
+        if($request->has('order_by') && $request->order_by != '' && in_array($request->order_by, ['name', 'price', 'stock'])) {
+            $orderDirection = $request->has('order_direction') && in_array($request->order_direction, ['asc', 'desc']) ? $request->order_direction : 'asc';
+            $products = $products->orderBy($request->order_by, $orderDirection);
+        }
+        
+        $products = $products->paginate(10);
+        return view('admin.products.index', compact('products'));
     }
 
     /**
