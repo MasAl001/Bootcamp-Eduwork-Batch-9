@@ -78,7 +78,7 @@
                                     <td class="border px-4 py-2 border-black">Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                                     <td class="border px-4 py-2 border-black">
                                         @if ($product->image)
-                                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover">
+                                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-16 h-16 object-cover">
                                         @else
                                             No Image
                                         @endif

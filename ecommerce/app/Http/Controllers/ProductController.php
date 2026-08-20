@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -35,7 +36,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $productCategories = ProductCategory::all();
+        return view('admin.products.create', compact('productCategories'));
     }
 
     /**
@@ -44,6 +46,51 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request->all());
+        // Validate input
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'product_category_id' => 'required|exists:product_categories,id',
+            'image' => 'required|string', // Base64 image
+        ]);
+
+        $imagePath = null;
+        
+        // Handle base64 cropped image
+        if ($validated['image'] && strpos($validated['image'], 'data:image') === 0) {
+            // Extract base64 data
+            $imageData = substr($validated['image'], strpos($validated['image'], ',') + 1);
+            $imageData = base64_decode($imageData);
+            
+            // Generate unique filename
+            $filename = 'product_' . time() . '_' . uniqid() . '.jpg';
+            $path = storage_path('app/public/products');
+            
+            // Create directory if it doesn't exist
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
+            }
+            
+            // Save the image
+            file_put_contents($path . '/' . $filename, $imageData);
+            $imagePath = 'products/' . $filename;
+        }
+
+        // Create product
+        Product::create([
+            'name' => $validated['name'],
+            'slug' => \Illuminate\Support\Str::slug($validated['name']),
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+            'stock' => $validated['stock'],
+            'product_category_id' => $validated['product_category_id'],
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -72,7 +119,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $productCategories = ProductCategory::all();
+        return view('admin.products.edit', compact('product', 'productCategories'));
     }
 
     /**
