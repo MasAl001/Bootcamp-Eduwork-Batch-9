@@ -13,6 +13,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $categories = ProductCategory::withCount('products')
+                        ->withsum('products', 'stock')
                         ->get();
         return view('admin.product-categories.index', compact('categories'));
     }

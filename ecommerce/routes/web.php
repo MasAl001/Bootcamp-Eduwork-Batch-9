@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -21,6 +22,7 @@ Route::get('/carts', function () {
 
 Route::prefix('dashboard')->middleware(['auth','admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::resource('orders', OrderController::class);
     Route::resource('products', ProductController::class);
     Route::resource('products-categories', ProductCategoryController::class);
 });

@@ -28,7 +28,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold">Latest Orders</h3>
-                        <a href="#!" class="text-blue-500 hover:underline">View All</a>
+                        <a href="{{ route('orders.index') }}" class="text-blue-500 hover:underline">View All</a>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">

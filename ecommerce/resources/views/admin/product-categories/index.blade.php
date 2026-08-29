@@ -23,6 +23,7 @@
                                 <th class="px-4 py-2 bg-gray-200 border border-black">Name</th>
                                 <th class="px-4 py-2 bg-gray-200 border border-black">Slug</th>
                                 <th class="px-4 py-2 bg-gray-200 border border-black">Products Count</th>
+                                <th class="px-4 py-2 bg-gray-200 border border-black">Total Stock</th>
                                 <th class="px-4 py-2 bg-gray-200 border border-black">Actions</th>
                             </tr>
                         </thead>
@@ -33,6 +34,7 @@
                                     <td class="border px-4 py-2 border-black">{{ $category->name }}</td>
                                     <td class="border px-4 py-2 border-black">{{ $category->slug }}</td>
                                     <td class="border px-4 py-2 border-black">{{ $category->products_count }}</td>
+                                    <td class="border px-4 py-2 border-black">{{ $category->products_sum_stock }}</td>
                                     <td class="border px-4 py-2 flex flex-wrap gap-2 items-center border-black">
                                         <a href="#"
                                         x-data=""
