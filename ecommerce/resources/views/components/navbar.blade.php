@@ -24,10 +24,31 @@
                     <span id="cartBadge" class="position-absolute top-0 inset-s-100 translate-middle badge rounded-pill bg-danger cart-badge">0</span>
                 </button>
                 <!-- Login/Register Button -->
+                @guest
                 <a href="{{ route('login') }}" class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2">
                     <i class="bi bi-box-arrow-in-right fs-5"></i>
                     <span class="fw-semibold">Login</span>
                 </a>
+                @endguest
+                @auth
+                @if(Auth::user()->role === 'admin')
+                <a href="{{ route('dashboard') }}" class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-speedometer2 fs-5"></i>
+                    <span class="fw-semibold">Dashboard</span>
+                </a>
+                @endif
+                <a href="{{ route('profile.edit') }}" class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-person fs-5"></i>
+                    <span class="fw-semibold">Profile</span>
+                </a>
+                <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Are you sure you want to logout?')">
+                    @csrf
+                    <button type="submit" class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-box-arrow-right fs-5"></i>
+                        <span class="fw-semibold">Logout</span>
+                    </button>
+                </form>
+                @endauth
             </div>
         </div>
     </div>

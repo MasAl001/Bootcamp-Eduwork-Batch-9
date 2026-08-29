@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('view.product');
 
@@ -19,11 +19,10 @@ Route::get('/carts', function () {
     return view('carts', ['title' => 'Carts']);
 });
 
-Route::prefix('dashboard')->middleware('auth')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-    Route::resource('products', ProductController::class)->middleware(['auth', 'verified']);
-    Route::resource('products-categories', ProductCategoryController::class)->middleware(['auth', 'verified']);
+Route::prefix('dashboard')->middleware(['auth','admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::resource('products', ProductController::class);
+    Route::resource('products-categories', ProductCategoryController::class);
 });
 
 Route::middleware('auth')->group(function () {
