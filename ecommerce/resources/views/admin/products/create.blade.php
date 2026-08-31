@@ -9,6 +9,7 @@
 
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <x-success-errors-message class="mb-4" />
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 {{-- Croppie CSS --}}
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
@@ -31,13 +32,13 @@
 
                     <div class="mb-4">
                         <x-input-label for="price" :value="__('Product Price')" />
-                        <x-text-input id="price" class="block mt-1 w-full" type="number" step="1" name="price" :value="old('price')" placeholder="Enter product price" required />
+                        <x-text-input id="price" class="block mt-1 w-full" type="number" step="1" name="price" :value="old('price')" placeholder="Enter product price" min="0" required />
                         <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
                     {{-- Product Price input field --}}
                     <div class="mb-4">
                         <x-input-label for="stock" :value="__('Product Stock')" />
-                        <x-text-input id="stock" class="block mt-1 w-full" type="number" step="1" name="stock" :value="old('stock')" placeholder="Enter product stock" required />
+                        <x-text-input id="stock" class="block mt-1 w-full" type="number" step="1" name="stock" :value="old('stock')" placeholder="Enter product stock" min="0" required />
                         <x-input-error :messages="$errors->get('stock')" class="mt-2" />
                     </div>
 
@@ -184,7 +185,7 @@
         
         // Display validation errors
         function displayValidationErrors() {
-            const errorFields = ['name', 'description', 'price', 'stock', 'product_category_id', 'image'];
+            const errorFields = ['name', 'description', 'price', 'stock', 'product_category_id'];
             
             errorFields.forEach(field => {
                 const element = document.getElementById(field);
@@ -324,7 +325,7 @@
                 croppieInstance.result({
                     type: 'base64',
                     size: 'viewport',
-                    format: 'jpeg',
+                    format: 'webp',
                     quality: 0.95
                 }).then(function(base64) {
                     // Store the cropped image in the hidden input
@@ -335,7 +336,10 @@
                     document.getElementById('imagePreview').classList.remove('hidden');
                     
                     // Clear image validation error
-                    clearValidationError('image');
+                    const imageElement = document.getElementById('image');
+                    if (imageElement) {
+                        clearValidationError('image');
+                    }
                     
                     // Close modal
                     closeModal();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
@@ -31,7 +32,22 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:3|max:50|unique:product_categories,name',
+        ]);
+
+        if (ProductCategory::where('name', $request->name)->exists()) {
+            return back()->withErrors(['name' => 'The category name already exists.'])->withInput();
+        }
+
+        $slug = Str::slug($request->name);
+
+        ProductCategory::create([
+            'name' => $request->name,
+            'slug' => $slug,
+        ]);
+
+        return back()->with('success', 'Product category created successfully.');
     }
 
     /**

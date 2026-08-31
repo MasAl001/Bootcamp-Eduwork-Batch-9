@@ -12,6 +12,8 @@
     </x-slot>
 
     <div class="py-12">
+        {{-- Success and Error Messages --}}
+        <x-success-errors-message class="mb-4" />
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 overflow-x-auto">
@@ -34,7 +36,7 @@
                                     <td class="border px-4 py-2 border-black">{{ $category->name }}</td>
                                     <td class="border px-4 py-2 border-black">{{ $category->slug }}</td>
                                     <td class="border px-4 py-2 border-black">{{ $category->products_count }}</td>
-                                    <td class="border px-4 py-2 border-black">{{ $category->products_sum_stock }}</td>
+                                    <td class="border px-4 py-2 border-black">{{ $category->products_sum_stock ?? "0" }}</td>
                                     <td class="border px-4 py-2 flex flex-wrap gap-2 items-center border-black">
                                         <a href="#"
                                         x-data=""
@@ -123,7 +125,7 @@
     <x-modal name="create-category" max-width="xl" focusable>
         <form method="POST" action="{{ route('products-categories.store') }}" class="p-6">
             @csrf
-            @method('PUT')
+
             <h2 class="text-lg font-medium text-gray-900">
                 {{ __('Create New Category') }}
             </h2>
@@ -137,6 +139,10 @@
                     type="text"
                     class="mt-1 block w-full"
                     placeholder="{{ __('Category Name') }}"
+                    minlength="3"
+                    maxlength="50"
+                    value="{{ old('name') }}"
+                    required
                 />
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
