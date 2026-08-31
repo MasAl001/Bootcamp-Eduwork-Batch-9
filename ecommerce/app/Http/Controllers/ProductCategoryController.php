@@ -71,7 +71,23 @@ class ProductCategoryController extends Controller
      */
     public function update(Request $request, ProductCategory $productCategory)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required|string|min:3|max:50'
+        ]);
+
+        if(ProductCategory::where('name', $request->name)->where('id', '!=', $productCategory->id)->exists()) {
+            return back()->withErrors(['name' => 'The category name "' . $request->name . '" already exists.'])->withInput();
+        }
+
+        $slug = Str::slug($request->name);
+
+        $productCategory->update([
+            'name' => $request->name,
+            'slug' => $slug,
+        ]);
+
+        return back()->with('success', 'Product category updated successfully.');
     }
 
     /**
@@ -79,6 +95,11 @@ class ProductCategoryController extends Controller
      */
     public function destroy(ProductCategory $productCategory)
     {
-        //
+        if($productCategory->products()->count() > 0) {
+            return back()->withErrors(['error' => 'Cannot delete category with associated products.']);
+        }
+        
+        $productCategory->delete();
+        return back()->with('success', 'Product category deleted successfully.');
     }
 }

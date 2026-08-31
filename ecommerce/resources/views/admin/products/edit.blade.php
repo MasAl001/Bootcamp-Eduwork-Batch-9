@@ -14,13 +14,13 @@
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
                 
                 {{-- Form for creating a new product --}}
-                <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data" id="productForm">
+                <form method="POST" action="{{ route('products.update', $product->id) }}" id="productForm">
                     @method('PUT')
                     @csrf
                     {{-- Product Name input field --}}
                     <div class="mb-4">
                         <x-input-label for="name" :value="__('Product Name')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $product->name)" placeholder="Enter product name" required autofocus />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $product->name)" placeholder="Enter product name" min="3" max="255" required autofocus />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     {{-- Product Description textarea field --}}
@@ -345,7 +345,10 @@
                     document.getElementById('imagePreview').classList.remove('hidden');
                     
                     // Clear image validation error
-                    clearValidationError('image');
+                    const imageElement = document.getElementById('image');
+                    if (imageElement) {
+                        clearValidationError('image');
+                    }
                     
                     // Close modal
                     closeModal();

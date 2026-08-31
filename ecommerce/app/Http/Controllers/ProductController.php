@@ -121,8 +121,15 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    // public function edit(Product $product)
+    public function edit(string $id)
     {
+        $product = Product::find($id);
+
+        if(!$product) {
+            return redirect()->route('products.index')->withErrors(['error' => 'Product with id ' . $id . ' not found.']);
+        }
+        
         $productCategories = ProductCategory::all();
         return view('admin.products.edit', compact('product', 'productCategories'));
     }
@@ -132,7 +139,46 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:10|max:1000',
+            'price' => 'required|integer|min:0',
+            'stock' => 'required|integer|min:0',
+            'product_category_id' => 'required|exists:product_categories,id',
+            'image' => 'nullable|string', // Base64 image
+        ]);
+
+        $imagePath = $product->image; // Keep existing image path by default
+        
+        // Handle base64 cropped image
+        if ($request->image && strpos($request->image, 'data:image') === 0) {
+            $imagePath = str_replace('images/', '', $imagePath); // Remove 'images/' prefix to get the actual path in the storage disk
+            if(Storage::disk('images')->exists($imagePath)) {
+                Storage::disk('images')->delete($imagePath);
+            }
+            // Extract base64 data
+            $imageData = substr($request->image, strpos($request->image, ',') + 1);
+            $imageData = base64_decode($imageData);
+            
+            // Generate unique filename
+            $filename = 'product_' . time() . '_' . uniqid() . '.webp';
+            $imagePath = 'products/' . $filename;
+            Storage::disk('images')->put($imagePath, $imageData);
+            $imagePath = 'images/' . $imagePath;
+        }
+
+        // Create product
+        $product->update([
+            'name' => $request->name,
+            'slug' => \Illuminate\Support\Str::slug($request->input('name')),
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'product_category_id' => $request->product_category_id,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('products.index')->with('success', 'Product with id ' . $product->id . ' updated successfully.');
     }
 
     /**
@@ -140,6 +186,23 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if($product->orderItems()->count() > 0) {
+            return back()->withErrors(['error' => 'Cannot delete product with associated order items.']);
+        }
+
+        if($product->cartItems()->count() > 0) {
+            $product->cartItems()->delete(); // Delete associated cart items
+        }
+
+        // Delete the product image from storage
+        $imagePath = str_replace('images/', '', $product->image); // Remove 'images/' prefix to get the actual path in the storage disk
+        if(Storage::disk('images')->exists($imagePath)) {
+            Storage::disk('images')->delete($imagePath);
+        }
+
+        // Delete the product
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Product with id ' . $product->id . ' deleted successfully.');
     }
 }
