@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductCategoryController;
@@ -16,9 +17,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('view.product');
 
-Route::get('/carts', function () {
-    return view('carts', ['title' => 'Carts']);
-});
+Route::resource('carts', CartItemController::class)->except(['show', 'create', 'edit']);
 
 Route::prefix('dashboard')->middleware(['auth','admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');

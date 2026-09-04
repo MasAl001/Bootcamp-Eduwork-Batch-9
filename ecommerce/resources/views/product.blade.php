@@ -11,7 +11,19 @@
                 <p>{{ $product->description }}</p>
                 <p>Price: Rp{{ number_format($product->price, 0, ',', '.') }}</p>
                 <p>Category: {{ $product->productCategory->name }}</p>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
+                <p>Stock: {{ $product->stock }}</p>
+                <form action="{{ route('carts.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    {{-- Quantity input --}}
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1" max="{{ $product->stock }}" {{ $in_stock ? '' : 'disabled' }}>
+                    </div>
+                    <button type="submit" class="btn {{ $in_stock ? 'btn-primary' : 'btn-secondary' }}" {{ $in_stock ? '' : 'disabled' }}>
+                        {{ $in_stock ? 'Add to Cart' : 'Out of Stock' }}
+                    </button>
+                </form>
             </div>
             <div class="col-12 mt-4">
                 <h3>Product recommendations</h3>

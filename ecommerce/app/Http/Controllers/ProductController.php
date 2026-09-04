@@ -108,14 +108,27 @@ class ProductController extends Controller
         $productRecommendations = Product::where('product_category_id', $product->product_category_id)
                                 ->where('id', '!=', $product->id)
                                 ->inRandomOrder()
+                                ->where('stock', '>', 0)
                                 ->take(4)
                                 ->get();
-        return view('product', 
-                    [
+        $in_stock = $product->stock > 0;
+        $this->clickCounter($product);
+        return view('product', [
                     'title' => $product->name,
                     'product' => $product
-                    ],
-                    compact('product', 'productRecommendations'));
+                    ],compact('product', 'productRecommendations', 'in_stock'));
+    }
+
+    private function clickCounter(Product $product)
+    {
+        //add clicks count with session
+        $sessionKey = 'product_clicks_' . $product->id;
+        // Check if the product has already been clicked in this session
+        if (!session()->has($sessionKey)) {
+            $product->clicks += 1;
+            $product->save();
+            session()->put($sessionKey, true);
+        }
     }
 
     /**

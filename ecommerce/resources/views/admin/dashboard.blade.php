@@ -36,6 +36,7 @@
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">order_id</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Amount</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
@@ -44,11 +45,12 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach($orderDataForTable as $row)
                                     <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row['order_id'] }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row['customer_name'] }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">Rp{{ number_format($row['total_amount'], 0, ',', '.') }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row['status'] }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row['created_at'] }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row->order_number }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row->customer_name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row->customer_phone }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Rp{{ number_format($row->total_amount, 0, ',', '.') }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row->status }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">{{ $row->created_at->format('Y-m-d H:i:s') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

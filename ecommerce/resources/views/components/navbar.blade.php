@@ -18,11 +18,10 @@
             <!-- Navigation Action Right -->  
             <div class="d-flex align-items-center gap-3 ms-auto">              
                 <!-- Cart Trigger Button -->
-                <button class="btn btn-light position-relative d-flex align-items-center gap-2 rounded-pill px-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                <a href="{{ route('carts.index') }}" class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2">
                     <i class="bi bi-cart3 fs-5"></i>
                     <span class="fw-semibold">Keranjang</span>
-                    <span id="cartBadge" class="position-absolute top-0 inset-s-100 translate-middle badge rounded-pill bg-danger cart-badge">0</span>
-                </button>
+                </a>
                 <!-- Login/Register Button -->
                 @guest
                 <a href="{{ route('login') }}" class="btn btn-light rounded-pill px-3 d-flex align-items-center gap-2">
